@@ -3,4 +3,5 @@ set -e
 
 . $IDF_PATH/export.sh
 
-idf.py build
+build_output=$(idf.py build)
+echo "::set-output name=build_output::$build_output"
