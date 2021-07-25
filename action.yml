@@ -3,6 +3,9 @@ description: "This action build your firmware directly in github using Espressif
 branding:
   color: blue
   icon: check
+outputs:
+  build_output:
+    description: "Output of the idf.py build command."
 runs:
   using: "docker"
   image: "Dockerfile"
