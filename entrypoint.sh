@@ -1,10 +1,15 @@
 #!/usr/bin/env bash
 set -e
 
+pushd .
+cd $IDF_PATH
+git remote add ctag https://github.com/ctag-fh-kiel/esp-idf.git
+git fetch ctag
+git checkout ctag/idf4_1-strampler
+git submodule update
+popd
+
 . $IDF_PATH/export.sh
 
-build_output=$(idf.py build)
-build_output="${build_output//'%'/'%25'}"
-build_output="${build_output//$'\n'/'%0A'}"
-build_output="${build_output//$'\r'/'%0D'}"
-echo "::set-output name=build_output::$build_output"
+idf.py build
+
